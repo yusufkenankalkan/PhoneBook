@@ -1,0 +1,47 @@
+﻿@model PhoneBookEntityLayer.ViewModels.MemberPhoneViewModel
+
+@{
+    ViewData["Title"] = "EditPhone";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="row">
+    <div class="col-md-6 offset-3">
+        <h4 style="text-align:center">@Model.FriendNameSurname</h4>
+        <hr />
+        <form asp-action="EditPhone" method="post">
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <input type="hidden" asp-for="CreatedDate" />
+            <input type="hidden" asp-for="MemberId" />
+            <input type="hidden" asp-for="IsRemoved" />
+            <div class="form-group">
+                <label asp-for="FriendNameSurname" class="control-label" style="font-weight:bold"></label>
+                <input asp-for="FriendNameSurname" class="form-control" />
+                <span asp-validation-for="FriendNameSurname" class="text-danger"></span>
+            </div><br />
+            <div class="form-group">
+                <label class="control-label"><b>Telefon Tür:</b></label>
+                <select class="form-control" asp-for="PhoneTypeId">
+                    @foreach (PhoneTypeViewModel item in ViewBag.PhoneTypes)
+                    {
+                        <option value="@item.Id">@item.Name</option>
+                    }
+                </select>
+            </div><br />
+            <div class="form-group">
+                <label asp-for="Phone" class="control-label" style="font-weight:bold"></label>
+                <input asp-for="Phone" class="form-control" />
+                <span asp-validation-for="Phone" class="text-danger"></span>
+            </div><br />
+            <div class="form-group">
+                <input type="submit" value="Kaydet" class="btn btn-primary" />
+            </div>
+            <div class="form-group">
+                <a asp-action="Index" style="font-weight:bold">Geri Dön</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
